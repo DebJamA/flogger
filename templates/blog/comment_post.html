@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+
+    <div class="offset-md-2 col-md-8">
+
+        {% include '_flashmessages.html' %}
+
+        <div class="Comments">
+           {% if post.comment %}
+            in <a href="{{ url_for('.comment', comment_id=post.comment.id )}}">
+                {{ post.comment.commenter }}</a>
+            {% endif %}
+                      
+            {% if session.id %}
+            - <a href="{{ url_for('.comment', slug=post.slug) }}">Comment</a>
+            {% endif %}
+        </div>
+        
+        <hr />
+        {{ comment.body|markdown }}
+
+    </div>
+
+</div>
+{% endblock %}
